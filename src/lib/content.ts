@@ -178,6 +178,89 @@ export const allPaths = [
   ...Object.keys(routePairs),
   ...Object.values(routePairs),
 ];
+
+export const serviceDetails: Record<
+  string,
+  {
+    enScope: string;
+    esScope: string;
+    enWork: string[];
+    esWork: string[];
+    enProcess: string[];
+    esProcess: string[];
+  }
+> = {
+  kitchen: {
+    enScope:
+      "Kitchen remodeling can include selective demolition, layout changes, cabinet and appliance coordination, lighting, plumbing adjustments, surfaces, flooring, and finish installation. The exact scope is defined after existing conditions and project priorities are reviewed.",
+    esScope:
+      "La remodelación de cocina puede incluir demolición selectiva, cambios de distribución, coordinación de gabinetes y electrodomésticos, iluminación, ajustes de plomería, superficies, pisos e instalación de acabados. El alcance se define después de revisar las condiciones existentes y las prioridades.",
+    enWork: ["Selective demolition and site protection", "Cabinet, appliance, and utility coordination", "Countertops, tile, lighting, and finish installation"],
+    esWork: ["Demolición selectiva y protección del sitio", "Coordinación de gabinetes, aparatos e instalaciones", "Instalación de cubiertas, azulejo, iluminación y acabados"],
+    enProcess: ["Document how the current kitchen works", "Confirm layout, selections, and construction scope", "Coordinate trades and install in sequence", "Complete finish review and closeout"],
+    esProcess: ["Documentar cómo funciona la cocina actual", "Confirmar distribución, selecciones y alcance de obra", "Coordinar oficios e instalar en secuencia", "Realizar revisión final y cierre"],
+  },
+  bathroom: {
+    enScope:
+      "Bathroom work centers on wet-area construction, waterproofing, ventilation, plumbing fixtures, electrical and lighting, tile, storage, and durable finish details. Existing moisture conditions and access are evaluated before the build plan is finalized.",
+    esScope:
+      "El trabajo de baño se enfoca en áreas húmedas, impermeabilización, ventilación, plomería, electricidad e iluminación, azulejo, almacenamiento y acabados duraderos. Las condiciones de humedad y acceso se evalúan antes de cerrar el plan de obra.",
+    enWork: ["Demolition and substrate assessment", "Plumbing, electrical, ventilation, and waterproofing", "Tile, vanity, fixture, glass, and finish installation"],
+    esWork: ["Demolición y evaluación de superficies", "Plomería, electricidad, ventilación e impermeabilización", "Instalación de azulejo, tocador, accesorios, vidrio y acabados"],
+    enProcess: ["Assess layout and wet-area conditions", "Confirm fixture locations and finish details", "Build and inspect concealed work", "Install finishes and test fixtures"],
+    esProcess: ["Evaluar distribución y áreas húmedas", "Confirmar ubicaciones y acabados", "Construir y revisar trabajos ocultos", "Instalar acabados y probar accesorios"],
+  },
+  "whole-home": {
+    enScope:
+      "A whole-home remodel coordinates multiple rooms, circulation, structural changes, building systems, flooring, millwork, and finishes as one construction program. Sequencing and protection of occupied or retained areas are central to planning.",
+    esScope:
+      "Una remodelación integral coordina varias habitaciones, circulación, cambios estructurales, sistemas, pisos, carpintería y acabados como un solo programa de construcción. La secuencia y protección de áreas conservadas son esenciales.",
+    enWork: ["Coordinated demolition and structural modifications", "Mechanical, electrical, and plumbing integration", "Room-to-room finish and millwork installation"],
+    esWork: ["Demolición coordinada y modificaciones estructurales", "Integración mecánica, eléctrica y de plomería", "Instalación continua de acabados y carpintería"],
+    enProcess: ["Document the home and define priorities", "Develop a coordinated scope and sequence", "Manage phased construction and trade work", "Review systems, finishes, and completion items"],
+    esProcess: ["Documentar la vivienda y definir prioridades", "Desarrollar alcance y secuencia coordinados", "Administrar fases de obra y oficios", "Revisar sistemas, acabados y pendientes"],
+  },
+  adu: {
+    enScope:
+      "Additions and ADUs involve feasibility, site access, connections to the existing home or utilities, structure, weatherproofing, interior build-out, and coordination with applicable local review and permitting requirements.",
+    esScope:
+      "Las ampliaciones y ADUs implican factibilidad, acceso al sitio, conexiones con la vivienda o servicios existentes, estructura, protección climática, construcción interior y coordinación con revisiones y permisos locales aplicables.",
+    enWork: ["Site and existing-condition evaluation", "Foundation, framing, enclosure, and utility coordination", "Interior build-out and exterior connections"],
+    esWork: ["Evaluación del sitio y condiciones existentes", "Coordinación de cimentación, estructura, envolvente y servicios", "Construcción interior y conexiones exteriores"],
+    enProcess: ["Review goals, site constraints, and feasibility", "Confirm scope and required project documentation", "Build structure, enclosure, and systems", "Complete interiors, site work, and final review"],
+    esProcess: ["Revisar objetivos, limitaciones y factibilidad", "Confirmar alcance y documentación requerida", "Construir estructura, envolvente y sistemas", "Completar interiores, sitio y revisión final"],
+  },
+  flooring: {
+    enScope:
+      "Flooring and finish carpentry work includes substrate preparation, transitions, hardwood or engineered flooring, doors, casing, baseboards, paneling, stairs, and the precise visible details that complete a remodel.",
+    esScope:
+      "Los pisos y la carpintería de acabados incluyen preparación de superficies, transiciones, madera natural o de ingeniería, puertas, marcos, zoclos, paneles, escaleras y los detalles visibles que completan la remodelación.",
+    enWork: ["Subfloor and existing-condition preparation", "Flooring layout, installation, and transitions", "Trim, doors, paneling, stairs, and final detailing"],
+    esWork: ["Preparación del subsuelo y condiciones existentes", "Distribución, instalación y transiciones de piso", "Molduras, puertas, paneles, escaleras y detalle final"],
+    enProcess: ["Measure and assess substrates", "Plan transitions, profiles, and material quantities", "Install flooring and architectural woodwork", "Complete fitting, finishing, and touch-ups"],
+    esProcess: ["Medir y evaluar superficies", "Planear transiciones, perfiles y cantidades", "Instalar pisos y carpintería arquitectónica", "Completar ajustes, acabados y retoques"],
+  },
+  exterior: {
+    enScope:
+      "Exterior renovation may address siding, openings, entries, trim, weather-resistive layers, exterior finishes, and connections to patios or outdoor living areas. Existing envelope conditions determine the appropriate repair and construction sequence.",
+    esScope:
+      "La renovación exterior puede abarcar revestimientos, vanos, accesos, molduras, barreras contra clima, acabados y conexiones con patios. Las condiciones de la envolvente determinan la secuencia de reparación y construcción.",
+    enWork: ["Exterior condition and water-management review", "Selective removal, repair, and opening modifications", "Siding, trim, entry, coating, and detail installation"],
+    esWork: ["Revisión de condiciones y manejo de agua", "Retiro selectivo, reparación y modificación de vanos", "Instalación de revestimientos, molduras, acceso y acabados"],
+    enProcess: ["Inspect the existing exterior assembly", "Define repairs, materials, and sequencing", "Complete enclosure work and exterior finishes", "Review weather protection and final details"],
+    esProcess: ["Inspeccionar la envolvente existente", "Definir reparaciones, materiales y secuencia", "Completar cerramientos y acabados exteriores", "Revisar protección climática y detalles finales"],
+  },
+  carpentry: {
+    enScope:
+      "Custom carpentry and built-ins move from field measurements to shop-ready details, material and hardware selection, fabrication, site fitting, installation, and finishing. Coordination with walls, flooring, lighting, and technology is planned in advance.",
+    esScope:
+      "La carpintería a medida pasa de medidas en sitio a detalles de fabricación, selección de materiales y herrajes, fabricación, ajuste, instalación y acabado. Se coordina con muros, pisos, iluminación y tecnología desde el inicio.",
+    enWork: ["Field measurement and detailed layout", "Material, hardware, and fabrication coordination", "Site fitting, installation, and finish work"],
+    esWork: ["Medición en sitio y trazado detallado", "Coordinación de materiales, herrajes y fabricación", "Ajuste, instalación y acabado en sitio"],
+    enProcess: ["Measure the space and define functional needs", "Resolve dimensions, materials, and hardware", "Fabricate and prepare site conditions", "Install, align, finish, and review"],
+    esProcess: ["Medir el espacio y definir necesidades", "Resolver dimensiones, materiales y herrajes", "Fabricar y preparar condiciones del sitio", "Instalar, alinear, terminar y revisar"],
+  },
+};
 export function pathInfo(path: string) {
   const clean = path === "/" ? "/" : path.replace(/\/$/, "");
   const lang: Lang = clean.startsWith("/es") ? "es" : "en";

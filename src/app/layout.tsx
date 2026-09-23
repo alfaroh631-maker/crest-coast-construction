@@ -7,9 +7,9 @@ const sans = Manrope({ variable: "--font-sans", subsets: ["latin"], weight: ["40
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://crest-coast-construction.vercel.app"),
-  title: { default: "Crest & Coast Construction | Santa Barbara Remodeling", template: "%s | Crest & Coast Construction" },
-  description: "Thoughtful residential construction and remodeling for Santa Barbara, Goleta, Montecito, and Carpinteria.",
-  openGraph: { type: "website", siteName: "Crest & Coast Construction", images: ["/images/hero.webp"] },
+  title: { default: "Crest & Coast Construction | Santa Barbara Construction & Remodeling", template: "%s | Crest & Coast Construction" },
+  description: "Residential construction and remodeling for Santa Barbara, Goleta, Montecito, and Carpinteria.",
+  openGraph: { type: "website", siteName: "Crest & Coast Construction", images: ["/images/hero-construction.webp"] },
 };
 
 export default function RootLayout({ children }: Readonly<{children: React.ReactNode}>) {

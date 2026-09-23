@@ -9,6 +9,16 @@ export function Header({ lang, alternate }: { lang: Lang; alternate: string }) {
   useEffect(() => {
     document.documentElement.lang = lang;
   }, [lang]);
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSvc(false);
+        setOpen(false);
+      }
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, []);
   const es = lang === "es",
     p = es ? "/es" : "";
   const nav = [
@@ -19,8 +29,6 @@ export function Header({ lang, alternate }: { lang: Lang; alternate: string }) {
       es ? "Áreas" : "Areas",
       es ? "/es/areas-de-servicio" : "/areas-we-serve",
     ],
-    [es ? "Testimonios" : "Reviews", `${p}/${es ? "testimonios" : "reviews"}`],
-    [es ? "Preguntas" : "FAQ", `${p}/${es ? "preguntas-frecuentes" : "faq"}`],
     [es ? "Contacto" : "Contact", `${p}/${es ? "contacto" : "contact"}`],
   ];
   return (
@@ -75,8 +83,8 @@ export function Header({ lang, alternate }: { lang: Lang; alternate: string }) {
         <Link className="lang" href={alternate}>
           EN | ES
         </Link>
-        <Link className="navCta" href={`${p}/${es ? "agendar" : "book"}`}>
-          {es ? "Agenda una Consulta" : "Book a Consultation"}
+        <Link className="navCta" href={`${p}/${es ? "contacto" : "contact"}`}>
+          {es ? "Solicitar presupuesto" : "Request an Estimate"}
         </Link>
       </nav>
     </header>
@@ -102,10 +110,11 @@ export function Footer({ lang }: { lang: Lang }) {
       </div>
       <div>
         <h3>{es ? "Contacto" : "Contact"}</h3>
-        <a href="tel:+18055550162">(805) 555-0162</a>
-        <a href="mailto:hello@crestandcoastconstruction.com">
-          hello@crestandcoastconstruction.com
-        </a>
+        <p className="pendingContact">
+          {es
+            ? "Teléfono y correo pendientes de verificación antes del lanzamiento."
+            : "Phone and email pending verification before launch."}
+        </p>
       </div>
       <div>
         <h3>{es ? "Explorar" : "Explore"}</h3>
@@ -118,6 +127,10 @@ export function Footer({ lang }: { lang: Lang }) {
         <Link href={`${p}/${es ? "contacto" : "contact"}`}>
           {es ? "Contacto" : "Contact"}
         </Link>
+        <Link href={`${p}/${es ? "testimonios" : "reviews"}`}>
+          {es ? "Testimonios" : "Reviews"}
+        </Link>
+        <Link href={`${p}/${es ? "preguntas-frecuentes" : "faq"}`}>FAQ</Link>
       </div>
       <div>
         <h3>Legal</h3>

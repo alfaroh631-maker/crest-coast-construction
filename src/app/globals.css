@@ -141,8 +141,8 @@ img {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, #171813df 0%, #17181370 48%, #17181310 75%),
-    url("/images/hero.webp") center/cover;
+    linear-gradient(90deg, #11130ff2 0%, #171813bd 44%, #17181335 78%),
+    url("/images/hero-construction.webp") center/cover;
 }
 .heroContent {
   position: relative;
@@ -167,8 +167,10 @@ h2 {
   margin: 14px 0;
 }
 .hero h1 {
-  font-size: clamp(52px, 7vw, 104px);
+  font-size: clamp(48px, 6.2vw, 94px);
+  font-weight: 600;
   letter-spacing: -0.035em;
+  max-width: 1040px;
 }
 .hero p {
   max-width: 620px;
@@ -180,6 +182,31 @@ h2 {
   gap: 12px;
   flex-wrap: wrap;
   margin-top: 30px;
+}
+.demoFlag {
+  bottom: 24px;
+  color: #f4eee5;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  margin: 0;
+  position: absolute;
+  right: clamp(22px, 7vw, 110px);
+  text-transform: uppercase;
+}
+.credentialBar {
+  align-items: center;
+  background: #e7ddd0;
+  border-bottom: 1px solid #cfc1af;
+  display: grid;
+  font-size: 12px;
+  gap: 18px;
+  grid-template-columns: 1.1fr repeat(3, 1fr);
+  padding: 24px clamp(22px, 7vw, 110px);
+}
+.credentialBar strong {
+  color: #8c5437;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 .section {
   padding: clamp(70px, 9vw, 140px) clamp(22px, 7vw, 110px);
@@ -218,6 +245,7 @@ h2 {
 }
 .serviceCard {
   background: #fff;
+  color: #242421;
 }
 .serviceCard img,
 .projectCard img {
@@ -231,6 +259,9 @@ h2 {
 .serviceCard h3 {
   font: 500 29px var(--font-display);
   margin: 0 0 8px;
+}
+.serviceCard p {
+  color: #4e4d48;
 }
 .textLink {
   font-size: 12px;
@@ -283,6 +314,9 @@ h2 {
   gap: 30px;
   counter-reset: step;
 }
+.processFive {
+  grid-template-columns: repeat(5, 1fr);
+}
 .step {
   border-top: 1px solid #b9aa97;
   padding-top: 20px;
@@ -314,6 +348,41 @@ h2 {
 }
 .splitText h2 {
   font-size: clamp(42px, 5vw, 70px);
+}
+.teamProcess {
+  background: #efe7dc;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+.teamProcess > img {
+  height: 100%;
+  min-height: 760px;
+  object-fit: cover;
+  width: 100%;
+}
+.teamProcessText {
+  align-self: center;
+  padding: clamp(60px, 7vw, 110px);
+}
+.teamProcessText h2,
+.estimateSection h2 {
+  font-size: clamp(42px, 5vw, 72px);
+}
+.teamProcessText .process {
+  gap: 14px;
+  margin: 42px 0;
+}
+.teamProcessText .step h3 {
+  font-size: 17px;
+}
+.estimateSection {
+  align-items: center;
+  display: flex;
+  gap: 60px;
+  justify-content: space-between;
+}
+.estimateSection > div {
+  max-width: 820px;
 }
 .areaRow {
   display: flex;
@@ -381,6 +450,20 @@ h2 {
   grid-template-columns: 1.2fr 0.8fr;
   gap: 9vw;
 }
+.serviceProcess {
+  background: #e9dfd1;
+}
+.focusLine {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 44px;
+}
+.focusLine span {
+  border: 1px solid #b9aa97;
+  font-size: 12px;
+  padding: 10px 14px;
+}
 .contentGrid h2 {
   font-size: 48px;
 }
@@ -431,6 +514,9 @@ h2 {
   font-size: 11px;
   margin-top: 38px;
 }
+.sampleNote.darkText {
+  color: #69655e;
+}
 .relatedGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -452,11 +538,14 @@ h2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 18px;
+  min-width: 0;
+  width: 100%;
 }
 .field {
   display: flex;
   flex-direction: column;
   gap: 7px;
+  min-width: 0;
 }
 .field.full {
   grid-column: 1/-1;
@@ -472,12 +561,33 @@ h2 {
   border: 1px solid #bdb2a2;
   background: #fff;
   padding: 15px;
+  max-width: 100%;
+  min-width: 0;
+  width: 100%;
 }
 .field textarea {
   min-height: 150px;
 }
 .form button {
   border: 0;
+}
+.formStatus {
+  align-self: center;
+  color: #6d675e;
+  font-size: 12px;
+  grid-column: 1/-1;
+  margin: 0;
+}
+.pendingContact {
+  color: #6d675e;
+  font-size: 13px;
+  max-width: 350px;
+}
+footer .pendingContact {
+  color: #bbb7af;
+}
+.notFoundPage {
+  min-height: 70vh;
 }
 .bookingBox {
   border: 1px dashed #9a6242;
@@ -539,6 +649,12 @@ footer p {
   .cardGrid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .credentialBar {
+    grid-template-columns: 1fr 1fr;
+  }
+  .processFive {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 @media (max-width: 760px) {
   .header {
@@ -582,9 +698,24 @@ footer p {
   }
   .hero {
     min-height: 760px;
+    padding-bottom: 90px;
+  }
+  .hero:before {
+    background:
+      linear-gradient(180deg, #11130fc2 0%, #11130f88 35%, #11130ff5 100%),
+      url("/images/hero-construction.webp") 63% center/cover;
   }
   .hero h1 {
-    font-size: 52px;
+    font-size: clamp(42px, 12vw, 58px);
+    line-height: 1.02;
+  }
+  .hero p {
+    color: #fff;
+    font-size: 16px;
+  }
+  .demoFlag {
+    left: 22px;
+    right: 22px;
   }
   .heroActions .btn {
     width: 100%;
@@ -592,7 +723,8 @@ footer p {
   .introGrid,
   .contentGrid,
   .split,
-  .projectGrid {
+  .projectGrid,
+  .teamProcess {
     grid-template-columns: 1fr;
   }
   .cardGrid {
@@ -600,6 +732,16 @@ footer p {
   }
   .process {
     grid-template-columns: 1fr 1fr;
+  }
+  .processFive {
+    grid-template-columns: 1fr 1fr;
+  }
+  .teamProcess > img {
+    min-height: 440px;
+  }
+  .estimateSection {
+    align-items: flex-start;
+    flex-direction: column;
   }
   .sectionHead {
     display: block;
@@ -616,6 +758,7 @@ footer p {
   }
   .form {
     grid-template-columns: 1fr;
+    overflow: hidden;
   }
   .reviewGrid,
   .relatedGrid {
@@ -630,6 +773,9 @@ footer p {
   .field.full {
     grid-column: auto;
   }
+  .formStatus {
+    grid-column: auto;
+  }
   .bookingBox {
     padding: 35px 20px;
   }
@@ -642,6 +788,7 @@ footer p {
 }
 @media (max-width: 480px) {
   .process,
+  .processFive,
   footer {
     grid-template-columns: 1fr;
   }
@@ -650,5 +797,8 @@ footer p {
   }
   .brand span {
     font-size: 19px;
+  }
+  .credentialBar {
+    grid-template-columns: 1fr;
   }
 }
