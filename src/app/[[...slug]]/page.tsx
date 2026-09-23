@@ -1117,7 +1117,7 @@ function Contact({ es }: { es: boolean }) {
           <input
             type="hidden"
             name="preferredLanguage"
-            value={es ? "Spanish" : "English"}
+            defaultValue={es ? "Spanish" : "English"}
           />
           <button className="btn" type="button">
             {es ? "Vista previa — no enviar" : "Preview — do not submit"}

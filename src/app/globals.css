@@ -89,7 +89,6 @@ img {
   padding: 9px 12px;
   border-bottom: 1px solid #ffffff16;
 }
-.servicesNav:hover .dropdown,
 .dropdown.show {
   display: block;
 }
@@ -692,9 +691,6 @@ footer p {
     background: #e8ded0;
     color: #222;
     margin-top: 12px;
-  }
-  .servicesNav:hover .dropdown:not(.show) {
-    display: none;
   }
   .hero {
     min-height: 760px;
