@@ -95,6 +95,10 @@ img {
 .lang {
   color: #9a6242;
 }
+.bookLink {
+  color: #7f4529;
+  font-weight: 700;
+}
 .navCta,
 .btn {
   background: #9a6242;
@@ -303,6 +307,12 @@ h2 {
   font: 500 32px var(--font-display);
   margin: 0;
 }
+.projectScope {
+  border-top: 1px solid #ffffff55;
+  font: 600 12px/1.55 var(--font-sans) !important;
+  margin-top: 16px;
+  padding-top: 14px;
+}
 .projectCard:nth-child(3n) {
   grid-column: 1/-1;
   height: 520px;
@@ -494,6 +504,20 @@ h2 {
   margin: 0;
   padding: 38px 34px 16px 0;
 }
+.reviewGrid article {
+  padding: 38px 34px 16px 0;
+}
+.reviewGrid article + article {
+  border-left: 1px solid #ffffff35;
+  padding-left: 34px;
+}
+.reviewGrid article h3 {
+  font: 500 clamp(22px, 2vw, 31px) / 1.25 var(--font-display);
+}
+.reviewGrid article p {
+  color: #d8d1c7;
+  font: 400 15px/1.7 var(--font-sans);
+}
 .reviewGrid blockquote + blockquote {
   border-left: 1px solid #ffffff35;
   padding-left: 34px;
@@ -570,12 +594,31 @@ h2 {
 .form button {
   border: 0;
 }
+.form button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+.honeypot {
+  height: 0;
+  left: -10000px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}
 .formStatus {
   align-self: center;
   color: #6d675e;
   font-size: 12px;
   grid-column: 1/-1;
   margin: 0;
+}
+.formStatus.success {
+  color: #426143;
+  font-weight: 700;
+}
+.formStatus.error {
+  color: #8b3f31;
+  font-weight: 700;
 }
 .pendingContact {
   color: #6d675e;
@@ -588,11 +631,33 @@ footer .pendingContact {
 .notFoundPage {
   min-height: 70vh;
 }
-.bookingBox {
-  border: 1px dashed #9a6242;
-  background: #fff;
-  padding: 60px;
+.bookingIntro {
+  margin: 0 auto 34px;
+  max-width: 760px;
   text-align: center;
+}
+.calendarEmbed {
+  background: #fff;
+  border: 1px solid #d4c7b6;
+  min-height: 780px;
+  overflow: hidden;
+}
+.calendarEmbed iframe {
+  border: 0;
+  display: block;
+  min-height: 780px;
+  width: 100%;
+}
+.calendarFallback {
+  color: #6d675e;
+  font-size: 13px;
+  margin-top: 18px;
+  text-align: center;
+}
+.calendarFallback a {
+  color: #8b5437;
+  font-weight: 700;
+  text-decoration: underline;
 }
 .legal {
   max-width: 850px;
@@ -641,7 +706,7 @@ footer p {
   .nav {
     gap: 13px;
   }
-  .nav > a:not(.navCta):not(.lang),
+  .nav > a:not(.navCta):not(.lang):not(.bookLink),
   .servicesNav {
     display: none;
   }
@@ -693,13 +758,13 @@ footer p {
     margin-top: 12px;
   }
   .hero {
-    min-height: 760px;
+    min-height: 820px;
     padding-bottom: 90px;
   }
   .hero:before {
     background:
       linear-gradient(180deg, #11130fc2 0%, #11130f88 35%, #11130ff5 100%),
-      url("/images/hero-construction.webp") 63% center/cover;
+      url("/images/hero-construction.webp") 71% center/cover;
   }
   .hero h1 {
     font-size: clamp(42px, 12vw, 58px);
@@ -708,6 +773,9 @@ footer p {
   .hero p {
     color: #fff;
     font-size: 16px;
+  }
+  .hero .eyebrow {
+    color: #ffd6b5;
   }
   .demoFlag {
     left: 22px;
@@ -761,7 +829,9 @@ footer p {
     grid-template-columns: 1fr;
   }
   .reviewGrid blockquote,
-  .reviewGrid blockquote + blockquote {
+  .reviewGrid blockquote + blockquote,
+  .reviewGrid article,
+  .reviewGrid article + article {
     border-left: 0;
     border-top: 1px solid #ffffff35;
     padding: 28px 0;
@@ -772,8 +842,9 @@ footer p {
   .formStatus {
     grid-column: auto;
   }
-  .bookingBox {
-    padding: 35px 20px;
+  .calendarEmbed,
+  .calendarEmbed iframe {
+    min-height: 920px;
   }
   footer {
     grid-template-columns: 1fr 1fr;

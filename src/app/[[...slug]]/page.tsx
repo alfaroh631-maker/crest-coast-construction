@@ -3,9 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer, Header } from "@/components/site";
+import { ContactForm } from "@/components/contact-form";
 import { allPaths, pathInfo, serviceDetails, services } from "@/lib/content";
 
-const site = "https://crest-coast-construction.vercel.app";
+const site = process.env.NEXT_PUBLIC_SITE_URL || "https://crest-coast-construction.vercel.app";
 type Props = { params: Promise<{ slug?: string[] }> };
 const projects = [
   {
@@ -16,6 +17,8 @@ const projects = [
     esCat: "Cocina",
     enD: "A warm, highly functional kitchen concept centered on custom storage and natural materials.",
     esD: "Una cocina cálida y funcional enfocada en almacenamiento a medida y materiales naturales.",
+    enScope: "Contemplated scope: layout, cabinetry, lighting, surfaces, and finish coordination.",
+    esScope: "Alcance contemplado: distribución, gabinetes, iluminación, superficies y acabados.",
   },
   {
     image: "/images/project-bathroom.webp",
@@ -25,6 +28,8 @@ const projects = [
     esCat: "Baño",
     enD: "A quiet retreat concept balancing stone, oak, and soft natural light.",
     esD: "Un concepto sereno que equilibra piedra, roble y luz natural suave.",
+    enScope: "Contemplated work: selective demolition, waterproofing, plumbing, tile, fixtures, and vanity installation.",
+    esScope: "Trabajos contemplados: demolición selectiva, impermeabilización, plomería, azulejo, accesorios y tocador.",
   },
   {
     image: "/images/project-whole-home.webp",
@@ -34,6 +39,8 @@ const projects = [
     esCat: "Casa Completa",
     enD: "Connected living spaces with a consistent architectural and material language.",
     esD: "Espacios conectados mediante un lenguaje arquitectónico y material consistente.",
+    enScope: "Contemplated scope: coordinated room layouts, building systems, flooring, carpentry, and finishes.",
+    esScope: "Alcance contemplado: distribución, instalaciones, pisos, carpintería y acabados coordinados.",
   },
   {
     image: "/images/project-adu.webp",
@@ -43,6 +50,8 @@ const projects = [
     esCat: "Ampliación",
     enD: "An efficient guest space designed around daylight, storage, and garden access.",
     esD: "Un espacio eficiente para huéspedes, diseñado alrededor de la luz y el jardín.",
+    enScope: "Contemplated work: site review, foundation, framing, enclosure, utilities, and interior completion.",
+    esScope: "Trabajos contemplados: evaluación, cimentación, estructura, cerramientos, servicios y acabados interiores.",
   },
   {
     image: "/images/project-exterior.webp",
@@ -52,6 +61,8 @@ const projects = [
     esCat: "Exterior",
     enD: "A refreshed rear elevation that strengthens indoor-outdoor living.",
     esD: "Una fachada posterior renovada que fortalece la conexión interior-exterior.",
+    enScope: "Contemplated scope: openings, siding, trim, weather protection, exterior finishes, and transitions.",
+    esScope: "Alcance contemplado: aperturas, revestimiento, molduras, protección climática y transiciones exteriores.",
   },
   {
     image: "/images/project-built-in.webp",
@@ -61,6 +72,8 @@ const projects = [
     esCat: "Carpintería",
     enD: "Integrated dining storage and seating crafted as part of the architecture.",
     esD: "Almacenamiento y asientos integrados como parte de la arquitectura.",
+    enScope: "Contemplated work: field measurements, material and hardware selection, fabrication, fitting, and finish.",
+    esScope: "Trabajos contemplados: medidas, selección de materiales y herrajes, fabricación, ajuste y acabado.",
   },
 ];
 const serviceFaqs: Record<
@@ -266,21 +279,21 @@ const pageMeta = {
   projects: {
     en: [
       "Residential Remodeling Projects",
-      "View six fictional residential project studies created for the Crest & Coast demonstration website.",
+      "Explore six illustrative residential concepts with project type, contemplated scope, and construction work.",
     ],
     es: [
       "Proyectos de Remodelación Residencial",
-      "Conoce seis proyectos residenciales ficticios creados para demostrar el website de Crest & Coast.",
+      "Explora seis conceptos residenciales ilustrativos con tipo de proyecto, alcance y trabajos contemplados.",
     ],
   },
   about: {
     en: [
       "About Crest & Coast",
-      "Learn about the thoughtful, architectural approach behind this fictional Santa Barbara remodeling brand.",
+      "Learn about the five-stage approach to residential construction and remodeling in Santa Barbara.",
     ],
     es: [
       "Sobre Crest & Coast",
-      "Conoce el enfoque cuidadoso y arquitectónico de esta marca ficticia de remodelación en Santa Barbara.",
+      "Conoce el proceso de cinco etapas para construcción y remodelación residencial en Santa Barbara.",
     ],
   },
   areas: {
@@ -295,62 +308,62 @@ const pageMeta = {
   },
   reviews: {
     en: [
-      "Reviews",
-      "Sample testimonials used only to demonstrate the future client reviews experience.",
+      "Construction Process",
+      "Learn how evaluation, planning, construction, and handover support a clear residential project.",
     ],
     es: [
-      "Testimonios",
-      "Testimonios de ejemplo utilizados únicamente para demostrar la futura experiencia de opiniones.",
+      "Proceso de Construcción",
+      "Conoce cómo la evaluación, planificación, construcción y entrega organizan un proyecto residencial.",
     ],
   },
   faq: {
     en: [
       "Frequently Asked Questions",
-      "Answers about Crest & Coast services, service areas, consultation, and demonstration website features.",
+      "Answers about Crest & Coast services, service areas, estimates, and consultations.",
     ],
     es: [
       "Preguntas Frecuentes",
-      "Respuestas sobre servicios, áreas, consultas y las funciones de demostración del website.",
+      "Respuestas sobre servicios, áreas de cobertura, presupuestos y consultas.",
     ],
   },
   contact: {
     en: [
-      "Request a Project Estimate",
-      "Share the basic details of a Santa Barbara-area residential remodeling project in this demo form.",
+      "Request an Estimate",
+      "Share the details of a residential construction or remodeling project in the Santa Barbara area.",
     ],
     es: [
-      "Solicita un Estimado de Proyecto",
-      "Comparte los datos básicos de una remodelación residencial mediante este formulario de demostración.",
+      "Solicitar Presupuesto",
+      "Comparte los detalles de un proyecto de construcción o remodelación residencial en el área de Santa Barbara.",
     ],
   },
   book: {
     en: [
       "Book a Free Consultation",
-      "A demonstration consultation page prepared for a future GoHighLevel calendar integration.",
+      "Choose an available time for a free residential remodeling consultation.",
     ],
     es: [
       "Agenda una Consulta Gratis",
-      "Página de consulta preparada para una futura integración del calendario de GoHighLevel.",
+      "Elige un horario disponible para una consulta gratis de remodelación residencial.",
     ],
   },
   privacy: {
     en: [
       "Privacy Policy",
-      "Privacy information for the fictional Crest & Coast Construction demonstration website.",
+      "Privacy information for Crest & Coast Construction website forms, chat, and consultation scheduling.",
     ],
     es: [
       "Política de Privacidad",
-      "Información de privacidad para el website ficticio de demostración de Crest & Coast Construction.",
+      "Información de privacidad para formularios, chat y agenda de Crest & Coast Construction.",
     ],
   },
   terms: {
     en: [
       "Terms of Service",
-      "Terms for the fictional Crest & Coast Construction demonstration website.",
+      "Terms for using the Crest & Coast Construction website and inquiry tools.",
     ],
     es: [
       "Términos de Servicio",
-      "Términos para el website ficticio de demostración de Crest & Coast Construction.",
+      "Términos de uso del sitio y sus herramientas de consulta.",
     ],
   },
 } as const;
@@ -458,10 +471,11 @@ function ProjectCards({ es }: { es: boolean }) {
           />
           <div>
             <span className="eyebrow">
-              {es ? "Estudio visual de muestra" : "Sample visual study"} · {es ? x.esCat : x.enCat}
+              {es ? "Concepto ilustrativo" : "Illustrative concept"} · {es ? x.esCat : x.enCat}
             </span>
             <h3>{es ? x.es : x.en}</h3>
             <p>{es ? x.esD : x.enD}</p>
+            <p className="projectScope">{es ? x.esScope : x.enScope}</p>
           </div>
         </article>
       ))}
@@ -489,6 +503,9 @@ function Home({ es }: { es: boolean }) {
               : "Kitchen and bathroom remodels, additions, ADUs, and whole-home renovations built with clear planning and careful execution."}
           </p>
           <div className="heroActions">
+            <Link className="btn" href={es ? "/es/agendar" : "/book"}>
+              {es ? "Agendar consulta gratis" : "Book a Free Consultation"}
+            </Link>
             <Link className="btn" href={es ? "/es/contacto" : "/contact"}>
               {es ? "Solicitar presupuesto" : "Request an Estimate"}
             </Link>
@@ -500,17 +517,6 @@ function Home({ es }: { es: boolean }) {
             </Link>
           </div>
         </div>
-        <p className="demoFlag">
-          {es
-            ? "Sitio demo · fotografía y contenido visual de muestra"
-            : "Demo website · sample photography and visual content"}
-        </p>
-      </section>
-      <section className="credentialBar" aria-label={es ? "Credenciales" : "Credentials"}>
-        <strong>{es ? "Antes del lanzamiento" : "Before launch"}</strong>
-        <span>{es ? "Licencia: pendiente de verificación" : "License: pending verification"}</span>
-        <span>{es ? "Seguro: pendiente de verificación" : "Insurance: pending verification"}</span>
-        <span>{es ? "Experiencia: pendiente de verificación" : "Experience: pending verification"}</span>
       </section>
       <section className="section dark">
         <div className="sectionHead">
@@ -535,9 +541,9 @@ function Home({ es }: { es: boolean }) {
       <section className="section">
         <div className="sectionHead">
           <div>
-            <span className="eyebrow">{es ? "Portafolio demo" : "Demo portfolio"}</span>
+            <span className="eyebrow">{es ? "Conceptos de proyectos" : "Project concepts"}</span>
             <h2>
-              {es ? "La construcción también debe verse." : "Show the build, not only the finish."}
+              {es ? "De la estructura al acabado." : "From Structure to Finish."}
             </h2>
           </div>
           <Link className="textLink" href={es ? "/es/proyectos" : "/projects"}>
@@ -545,11 +551,6 @@ function Home({ es }: { es: boolean }) {
           </Link>
         </div>
         <ProjectCards es={es} />
-        <p className="notice">
-          {es
-            ? "Estos son estudios visuales de demostración, no proyectos realizados por Crest & Coast. Antes de publicar un caso real deberán agregarse ubicación general, alcance, trabajos realizados y fotografías verificadas de antes, durante y después."
-            : "These are demonstration visual studies, not projects completed by Crest & Coast. Before publishing a real case study, add a general location, scope, work performed, and verified before, during, and after photography."}
-        </p>
       </section>
       <section className="teamProcess">
         <Image
@@ -561,7 +562,7 @@ function Home({ es }: { es: boolean }) {
         <div className="teamProcessText">
           <span className="eyebrow">{es ? "Equipo y proceso" : "Team and process"}</span>
           <h2>{es ? "Un proyecto se construye con decisiones claras." : "A project is built through clear decisions."}</h2>
-          <p>{es ? "La fotografía muestra una escena generada para esta demostración. Sustituir con el equipo real y su forma de trabajar antes del lanzamiento." : "This photograph is a generated demonstration scene. Replace it with the real team and their actual way of working before launch."}</p>
+          <p>{es ? "Desde la evaluación inicial hasta la entrega, cada etapa organiza decisiones, alcance, coordinación y control de calidad." : "From the initial evaluation through handover, each stage organizes decisions, scope, coordination, and quality control."}</p>
           <div className="process processFive">
             {[es ? "Evaluación" : "Evaluation", es ? "Presupuesto" : "Estimate", es ? "Planificación" : "Planning", es ? "Construcción" : "Construction", es ? "Entrega" : "Handover"].map((step) => <div className="step" key={step}><h3>{step}</h3></div>)}
           </div>
@@ -572,63 +573,29 @@ function Home({ es }: { es: boolean }) {
         <div className="sectionHead">
           <div>
             <span className="eyebrow">
-              {es ? "Testimonios de ejemplo" : "Sample testimonials"}
+              {es ? "Cómo trabajamos" : "How we work"}
             </span>
             <h2>
               {es
-                ? "Cómo debe sentirse un proceso bien cuidado."
-                : "How a considered process should feel."}
+                ? "Claridad en cada etapa del proyecto."
+                : "Clarity through every project stage."}
             </h2>
           </div>
         </div>
         <div className="reviewGrid">
           {(es
-            ? [
-                [
-                  "El concepto respetó el carácter de nuestra casa y mejoró la manera en que la usamos todos los días.",
-                  "Propietario de ejemplo · Santa Barbara",
-                ],
-                [
-                  "Los materiales y la carpintería hicieron que los espacios nuevos se sintieran completamente integrados.",
-                  "Propietario de ejemplo · Montecito",
-                ],
-                [
-                  "Agradecimos tener un camino claro desde las primeras ideas hasta la revisión final.",
-                  "Propietario de ejemplo · Goleta",
-                ],
-              ]
-            : [
-                [
-                  "The concept respected the character of our home and improved how we use it every day.",
-                  "Sample homeowner · Santa Barbara",
-                ],
-                [
-                  "The materials and millwork made the new spaces feel completely integrated.",
-                  "Sample homeowner · Montecito",
-                ],
-                [
-                  "We appreciated having a clear path from the first ideas through the final review.",
-                  "Sample homeowner · Goleta",
-                ],
-              ]
-          ).map(([quote, source]) => (
-            <blockquote key={source}>
-              <p>“{quote}”</p>
-              <cite>{source}</cite>
-            </blockquote>
+            ? [["Evaluación y alcance", "Revisamos la vivienda, las prioridades y las condiciones que pueden influir en el trabajo."], ["Planificación coordinada", "Organizamos materiales, decisiones y secuencia antes de comenzar la construcción."], ["Construcción y entrega", "Coordinamos los oficios, revisamos los detalles y cerramos el proyecto con una entrega ordenada."]]
+            : [["Evaluation and scope", "We review the home, priorities, and conditions that may influence the work."], ["Coordinated planning", "We organize materials, decisions, and sequencing before construction begins."], ["Construction and handover", "We coordinate trades, review details, and close the project with an organized handover."]]
+          ).map(([title, text]) => (
+            <article key={title}><h3>{title}</h3><p>{text}</p></article>
           ))}
         </div>
-        <p className="sampleNote">
-          {es
-            ? "Testimonios de ejemplo utilizados únicamente para demostración."
-            : "Sample testimonials for demonstration purposes."}
-        </p>
       </section>
       <section className="section estimateSection">
         <div>
           <span className="eyebrow">{es ? "Siguiente paso" : "Next step"}</span>
           <h2>{es ? "Cuéntanos qué quieres construir." : "Tell us what you want to build."}</h2>
-          <p>{es ? "El formulario continúa como demostración y no transmite información todavía." : "The form remains a demonstration and does not transmit information yet."}</p>
+          <p>{es ? "Comparte los datos principales de tu proyecto o elige un horario para conversar." : "Share the essentials of your project or choose a time to talk."}</p>
         </div>
         <Link className="btn" href={es ? "/es/contacto" : "/contact"}>{es ? "Solicitar presupuesto" : "Request an Estimate"}</Link>
       </section>
@@ -651,8 +618,8 @@ function Faq({ es }: { es: boolean }) {
           "Atendemos Santa Barbara, Goleta, Montecito y Carpinteria.",
         ],
         [
-          "¿El formulario ya envía mi información?",
-          "No. Mientras este sitio sea de demostración, el formulario y la agenda no transmiten información.",
+          "¿Debo solicitar presupuesto o agendar una consulta?",
+          "Use Solicitar presupuesto para enviar los detalles del proyecto. Use Agendar consulta gratis si prefiere seleccionar un horario.",
         ],
       ]
     : [
@@ -669,8 +636,8 @@ function Faq({ es }: { es: boolean }) {
           "We serve Santa Barbara, Goleta, Montecito, and Carpinteria.",
         ],
         [
-          "Does the form send my information yet?",
-          "No. While this remains a demonstration website, the form and booking page do not transmit information.",
+          "Should I request an estimate or book a consultation?",
+          "Use Request an Estimate to send project details. Use Book a Free Consultation if you prefer to select a time.",
         ],
       ];
   return (
@@ -728,11 +695,11 @@ function ServicePage({
           <span className="eyebrow">{es ? "Alcance del trabajo" : "Scope of work"}</span>
           <h2>
             {es
-              ? `Qué implica ${name.toLowerCase()}.`
+              ? service.key === "adu" ? "Qué incluye una ampliación o un ADU." : `Qué incluye ${name.toLowerCase()}.`
               : `What ${name.toLowerCase()} involves.`}
           </h2>
           <p>{es ? details.esScope : details.enScope}</p>
-          <p className="sampleNote darkText">{es ? "El alcance final depende de una evaluación real del sitio y de información verificada del negocio." : "Final scope depends on an actual site evaluation and verified business information."}</p>
+          <p className="sampleNote darkText">{es ? "El alcance final depende de las condiciones de la vivienda y de la evaluación del proyecto." : "Final scope depends on the property conditions and project evaluation."}</p>
         </div>
         <div>
           <h3>{es ? "Trabajo habitual" : "Typical work"}</h3>
@@ -743,7 +710,7 @@ function ServicePage({
           </ul>
           <Link className="btn" href={es ? "/es/contacto" : "/contact"}>
             {es
-              ? `Solicita un estimado para ${name}`
+              ? `Solicitar presupuesto para ${name}`
               : `Request an estimate for ${name}`}
           </Link>
         </div>
@@ -809,7 +776,7 @@ function StandardPage({ es, type }: { es: boolean; type: string }) {
         <section className="pageHero">
           <Image
             src="/images/whole-home.webp"
-            alt="Residential remodeling"
+            alt={es ? "Remodelación residencial" : "Residential remodeling"}
             fill
             sizes="100vw"
           />
@@ -837,36 +804,31 @@ function StandardPage({ es, type }: { es: boolean; type: string }) {
         <section className="pageHero">
           <Image
             src="/images/projects.webp"
-            alt="Projects"
+            alt={es ? "Conceptos de proyectos residenciales" : "Residential project concepts"}
             fill
             sizes="100vw"
           />
           <div>
             <span className="eyebrow">
-              {es ? "Portafolio de demostración" : "Demonstration portfolio"}
+              {es ? "Conceptos de proyectos" : "Project concepts"}
             </span>
             <h1>{es ? "Proyectos" : "Projects"}</h1>
             <p>
               {es
-                ? "Seis conceptos residenciales creados para demostrar la presentación visual del sitio."
-                : "Six residential concepts created to demonstrate the visual presentation of the website."}
+                ? "Seis conceptos residenciales que presentan tipo de proyecto, alcance y trabajos contemplados."
+                : "Six residential concepts presenting project type, contemplated scope, and construction work."}
             </p>
           </div>
         </section>
         <section className="section">
           <ProjectCards es={es} />
-          <p className="notice">
-            {es
-              ? "Proyectos ficticios de demostración; no representan trabajos realizados por un negocio real."
-              : "Fictional demonstration projects; they do not represent work completed by a real business."}
-          </p>
         </section>
         <section className="split dark projectProof">
           <Image src="/images/craft-in-progress.webp" alt={es ? "Carpintería en proceso en una escena de construcción de muestra" : "Carpentry in progress in a sample construction scene"} width={1600} height={1067} />
           <div className="splitText">
             <span className="eyebrow">{es ? "Capacidad de construcción" : "Construction capability"}</span>
             <h2>{es ? "Mostrar el trabajo detrás del resultado." : "Show the work behind the result."}</h2>
-            <p>{es ? "Un caso real deberá documentar condiciones iniciales, protección del sitio, trabajos ocultos, coordinación de oficios y terminación. Esta imagen es material generado de demostración." : "A real case study should document initial conditions, site protection, concealed work, trade coordination, and completion. This image is generated demonstration material."}</p>
+            <p>{es ? "Cada concepto contempla condiciones iniciales, protección del sitio, trabajos ocultos, coordinación de oficios y terminación dentro de un alcance definido." : "Each concept considers initial conditions, site protection, concealed work, trade coordination, and completion within a defined scope."}</p>
           </div>
         </section>
         <Cta es={es} />
@@ -904,19 +866,19 @@ function StandardPage({ es, type }: { es: boolean; type: string }) {
           <div>
             <p>
               {es
-                ? "Crest & Coast Construction continúa siendo un negocio ficticio de demostración. La fotografía del equipo fue generada para definir la dirección visual y debe sustituirse por fotografías reales antes del lanzamiento."
-                : "Crest & Coast Construction remains a fictional demonstration business. The team photograph was generated to establish the visual direction and must be replaced with real photography before launch."}
+                ? "Nuestro enfoque organiza el proyecto desde la primera conversación hasta la revisión final, manteniendo claros el alcance, las decisiones y la secuencia de construcción."
+                : "Our approach organizes the project from the first conversation through final review, keeping scope, decisions, and construction sequencing clear."}
             </p>
             <p>
               {es
-                ? "No se atribuyen licencia, seguro, años de experiencia, premios, garantías, certificaciones ni asociaciones. Todos esos datos están pendientes de verificación."
-                : "No license, insurance, years of experience, awards, warranties, certifications, or associations are claimed. All remain pending verification."}
+                ? "La evaluación define las condiciones existentes; el presupuesto establece el alcance; la planificación coordina decisiones; la construcción ejecuta el trabajo; y la entrega cierra los detalles acordados."
+                : "Evaluation identifies existing conditions; the estimate defines scope; planning coordinates decisions; construction executes the work; and handover closes the agreed details."}
             </p>
           </div>
         </section>
         <section className="section dark">
-          <div className="sectionHead"><div><span className="eyebrow">{es ? "Proceso propuesto" : "Proposed process"}</span><h2>{es ? "Cinco etapas para mantener claridad." : "Five stages to keep the work clear."}</h2></div></div>
-          <div className="process processFive">{[es ? "Evaluación" : "Evaluation", es ? "Presupuesto" : "Estimate", es ? "Planificación" : "Planning", es ? "Construcción" : "Construction", es ? "Entrega" : "Handover"].map((step) => <div className="step" key={step}><h3>{step}</h3><p>{es ? "Descripción pendiente de confirmar con la operación real." : "Details pending confirmation against actual operations."}</p></div>)}</div>
+          <div className="sectionHead"><div><span className="eyebrow">{es ? "Nuestro proceso" : "Our process"}</span><h2>{es ? "Cinco etapas para mantener claridad." : "Five stages to keep the work clear."}</h2></div></div>
+          <div className="process processFive">{(es ? [["Evaluación","Revisamos objetivos, espacios y condiciones existentes."],["Presupuesto","Definimos el alcance contemplado y las decisiones necesarias."],["Planificación","Coordinamos secuencia, materiales y preparación del proyecto."],["Construcción","Organizamos los trabajos y revisamos su avance."],["Entrega","Revisamos detalles y cerramos el alcance acordado."]] : [["Evaluation","We review goals, spaces, and existing conditions."],["Estimate","We define the contemplated scope and required decisions."],["Planning","We coordinate sequencing, materials, and project preparation."],["Construction","We organize the work and review its progress."],["Handover","We review details and close the agreed scope."]]).map(([step,desc]) => <div className="step" key={step}><h3>{step}</h3><p>{desc}</p></div>)}</div>
         </section>
         <Cta es={es} />
       </>
@@ -927,7 +889,7 @@ function StandardPage({ es, type }: { es: boolean; type: string }) {
         <section className="pageHero">
           <Image
             src="/images/exterior.webp"
-            alt="Santa Barbara home"
+            alt={es ? "Vivienda en Santa Barbara" : "Santa Barbara home"}
             fill
             sizes="100vw"
           />
@@ -940,17 +902,13 @@ function StandardPage({ es, type }: { es: boolean; type: string }) {
         </section>
         <section className="section">
           <div className="cardGrid">
-            {["Santa Barbara", "Goleta", "Montecito", "Carpinteria"].map(
-              (x) => (
+            {(es ? [["Santa Barbara","Remodelaciones residenciales, ampliaciones y trabajo de acabado dentro de la ciudad de Santa Barbara."],["Goleta","Servicios para viviendas de Goleta, desde cocinas y baños hasta remodelaciones integrales."],["Montecito","Proyectos residenciales que requieren planificación cuidadosa, coordinación de materiales y atención arquitectónica."],["Carpinteria","Construcción y remodelación para viviendas de Carpinteria y sus espacios interiores y exteriores."]] : [["Santa Barbara","Residential remodels, additions, and finish work within the city of Santa Barbara."],["Goleta","Services for Goleta homes, from kitchens and baths to whole-home remodeling."],["Montecito","Residential projects requiring careful planning, material coordination, and architectural attention."],["Carpinteria","Construction and remodeling for Carpinteria homes and their interior and exterior spaces."]]).map(
+              ([x, description]) => (
                 <article className="serviceCard" key={x}>
                   <div>
                     <span className="eyebrow">California</span>
                     <h3>{x}</h3>
-                    <p>
-                      {es
-                        ? "Servicios de construcción y remodelación residencial para propietarios en esta comunidad."
-                        : "Residential construction and remodeling services for homeowners in this community."}
-                    </p>
+                    <p>{description}</p>
                   </div>
                 </article>
               ),
@@ -966,49 +924,36 @@ function StandardPage({ es, type }: { es: boolean; type: string }) {
         <section className="pageHero">
           <Image
             src="/images/carpentry.webp"
-            alt="Custom craftsmanship"
+            alt={es ? "Carpintería residencial a medida" : "Custom residential craftsmanship"}
             fill
             sizes="100vw"
           />
           <div>
             <span className="eyebrow">
-              {es ? "Comentarios de muestra" : "Sample feedback"}
+              {es ? "Servicios y proceso" : "Services and process"}
             </span>
-            <h1>{es ? "Testimonios" : "Reviews"}</h1>
+            <h1>{es ? "Cómo se desarrolla un proyecto" : "How a project comes together"}</h1>
           </div>
         </section>
         <section className="section">
-          <p className="notice">
-            {es
-              ? "Testimonios de ejemplo utilizados únicamente para demostración."
-              : "Sample testimonials for demonstration purposes."}
-          </p>
           <div className="cardGrid">
             {(es
               ? [
-                  "“El proceso se sintió claro y el concepto respetó el carácter de nuestra casa.”",
-                  "“La atención a la distribución y los materiales hizo que el espacio se sintiera completamente integrado.”",
-                  "“Nos gustó la comunicación directa y la forma cuidadosa de presentar cada decisión.”",
+                  ["Definir el alcance","La evaluación inicial ayuda a identificar prioridades, condiciones existentes y el tipo de trabajo requerido."],
+                  ["Coordinar decisiones","La planificación conecta distribución, materiales, sistemas y secuencia antes de construir."],
+                  ["Ejecutar y revisar","Durante la construcción se coordinan oficios y se revisan los detalles contemplados en el alcance."],
                 ]
               : [
-                  "“The process felt clear, and the concept respected the character of our home.”",
-                  "“The attention to layout and materials made the space feel completely integrated.”",
-                  "“We appreciated the direct communication and thoughtful presentation of each decision.”",
+                  ["Define the scope","The initial evaluation identifies priorities, existing conditions, and the work required."],
+                  ["Coordinate decisions","Planning connects layout, materials, systems, and sequencing before construction."],
+                  ["Build and review","During construction, trades are coordinated and details within the scope are reviewed."],
                 ]
-            ).map((x, i) => (
-              <article className="serviceCard" key={x}>
+            ).map(([title, text]) => (
+              <article className="serviceCard" key={title}>
                 <div>
-                  <span className="eyebrow">
-                    {es ? "Testimonio de muestra" : "Sample testimonial"}
-                  </span>
-                  <p className="lead">{x}</p>
-                  <p>
-                    —{" "}
-                    {es
-                      ? "Propietario de demostración"
-                      : "Demonstration homeowner"}{" "}
-                    {i + 1}
-                  </p>
+                  <span className="eyebrow">{es ? "Etapa del proyecto" : "Project stage"}</span>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
                 </div>
               </article>
             ))}
@@ -1023,7 +968,7 @@ function StandardPage({ es, type }: { es: boolean; type: string }) {
         <section className="pageHero">
           <Image
             src="/images/flooring.webp"
-            alt="Remodeling details"
+            alt={es ? "Detalles de remodelación residencial" : "Residential remodeling details"}
             fill
             sizes="100vw"
           />
@@ -1048,7 +993,7 @@ function Contact({ es }: { es: boolean }) {
       <section className="pageHero">
         <Image
           src="/images/about.webp"
-          alt="Project consultation"
+          alt={es ? "Consulta sobre un proyecto residencial" : "Residential project consultation"}
           fill
           sizes="100vw"
         />
@@ -1056,7 +1001,7 @@ function Contact({ es }: { es: boolean }) {
           <span className="eyebrow">
             {es ? "Cuéntanos sobre tu proyecto" : "Tell us about your project"}
           </span>
-          <h1>{es ? "Solicita un Estimado" : "Request a Project Estimate"}</h1>
+          <h1>{es ? "Solicitar presupuesto" : "Request an Estimate"}</h1>
         </div>
       </section>
       <section className="section contentGrid">
@@ -1068,63 +1013,11 @@ function Contact({ es }: { es: boolean }) {
           </h2>
           <p>
             {es
-              ? "Comparte información básica sobre tu proyecto. Esta versión del formulario es solo una demostración y no envía datos."
-              : "Share a few basics about your project. This version of the form is a demonstration and does not submit data."}
+              ? "Comparte la información principal para que tu solicitud quede registrada con el proyecto correcto."
+              : "Share the essential information so your request can be recorded with the correct project details."}
           </p>
-          <div className="notice" id="demo-form-note">
-            {es
-              ? "Formulario demo — no se enviará ni almacenará información."
-              : "Demo form — no information will be sent or stored."}
-          </div>
-          <p className="pendingContact">{es ? "Teléfono y correo pendientes de sustitución y verificación. Los enlaces de llamada y correo permanecerán inactivos hasta entonces." : "Phone and email are pending replacement and verification. Call and email links remain inactive until then."}</p>
         </div>
-        <form className="form" aria-describedby="demo-form-note">
-          <div className="field">
-            <label htmlFor="full-name">{es ? "Nombre completo" : "Full Name"}</label>
-            <input id="full-name" name="fullName" type="text" required autoComplete="name" />
-          </div>
-          <div className="field">
-            <label htmlFor="phone">{es ? "Teléfono" : "Phone"}</label>
-            <input id="phone" name="phone" type="tel" required autoComplete="tel" />
-          </div>
-          <div className="field">
-            <label htmlFor="email">Email</label>
-            <input id="email" name="email" type="email" required autoComplete="email" />
-          </div>
-          <div className="field">
-            <label htmlFor="city">{es ? "Ciudad" : "City"}</label>
-            <input id="city" name="city" type="text" required autoComplete="address-level2" />
-          </div>
-          <div className="field">
-            <label htmlFor="project-type">{es ? "Tipo de proyecto" : "Project Type"}</label>
-            <select id="project-type" name="projectType" required defaultValue="">
-              <option value="" disabled>{es ? "Selecciona una opción" : "Select one"}</option>
-              {services.map((s) => (
-                <option value={s.key} key={s.key}>{es ? s.es : s.en}</option>
-              ))}
-            </select>
-          </div>
-          <div className="field">
-            <label htmlFor="timeline">
-              {es ? "Tiempo deseado (opcional)" : "Desired Timeline (optional)"}
-            </label>
-            <input id="timeline" name="timeline" type="text" />
-          </div>
-          <div className="field full">
-            <label htmlFor="project-details">{es ? "Detalles del proyecto" : "Project Details"}</label>
-            <textarea id="project-details" name="projectDetails" required />
-          </div>
-          <input
-            type="hidden"
-            name="preferredLanguage"
-            value={es ? "Spanish" : "English"}
-            readOnly
-          />
-          <button className="btn" type="button">
-            {es ? "Vista previa — no enviar" : "Preview — do not submit"}
-          </button>
-          <p className="formStatus">{es ? "Formulario demo: el botón no envía ni almacena información." : "Demo form: the button does not send or store information."}</p>
-        </form>
+        <ContactForm es={es} />
       </section>
     </>
   );
@@ -1135,7 +1028,7 @@ function Book({ es }: { es: boolean }) {
       <section className="pageHero">
         <Image
           src="/images/hero.webp"
-          alt="Santa Barbara remodeling consultation"
+          alt={es ? "Consulta de remodelación en Santa Barbara" : "Santa Barbara remodeling consultation"}
           fill
           sizes="100vw"
         />
@@ -1147,24 +1040,34 @@ function Book({ es }: { es: boolean }) {
         </div>
       </section>
       <section className="section">
-        <div className="bookingBox">
+        <div className="bookingIntro">
           <span className="eyebrow">
-            {es ? "Calendario demo" : "Demo calendar"}
+            {es ? "Consulta inicial" : "Initial consultation"}
           </span>
           <h2>
             {es
-              ? "La agenda estará disponible próximamente."
-              : "Scheduling will be available soon."}
+              ? "Selecciona un horario disponible."
+              : "Choose an available time."}
           </h2>
           <p>
             {es
-              ? "Esta página está preparada para recibir el calendario de GoHighLevel después de la aprobación del sitio. No se ha creado ni conectado otro sistema de citas."
-              : "This page is prepared for the GoHighLevel calendar after the website is approved. No separate booking system has been created or connected."}
+              ? "La disponibilidad se muestra en la zona horaria seleccionada dentro del calendario."
+              : "Availability is shown in the time zone selected inside the calendar."}
           </p>
-          <Link className="btn" href={es ? "/es/contacto" : "/contact"}>
-            {es ? "Ver formulario de proyecto" : "View project form"}
-          </Link>
         </div>
+        <div className="calendarEmbed">
+          <iframe
+            src={process.env.NEXT_PUBLIC_GHL_CALENDAR_URL || "https://api.leadconnectorhq.com/widget/booking/83nIdfrbQXfufUHkUNZq"}
+            title={es ? "Calendario para agendar una consulta" : "Consultation booking calendar"}
+            loading="eager"
+          />
+        </div>
+        <p className="calendarFallback">
+          {es ? "¿Prefieres compartir los detalles primero?" : "Would you rather share the project details first?"}{" "}
+          <Link href={es ? "/es/contacto" : "/contact"}>
+            {es ? "Solicitar presupuesto" : "Request an Estimate"}
+          </Link>
+        </p>
       </section>
     </>
   );
@@ -1184,23 +1087,19 @@ function Legal({ es, terms }: { es: boolean; terms: boolean }) {
             ? "Política de Privacidad"
             : "Privacy Policy"}
       </h1>
-      <div className="notice">
-        {es
-          ? "Este sitio representa un negocio ficticio con fines de demostración."
-          : "This website represents a fictional business for demonstration purposes."}
-      </div>
       <h2>{es ? "Alcance" : "Scope"}</h2>
       <p>
         {terms
           ? es
-            ? "El contenido se ofrece únicamente como demostración y no constituye una oferta contractual, cotización ni compromiso de servicio."
-            : "Content is provided only as a demonstration and does not constitute a contractual offer, quote, or service commitment."
+            ? "La información del sitio es general y no constituye una cotización, contrato, garantía de disponibilidad ni compromiso de ejecutar un proyecto. El alcance se confirma mediante documentación separada."
+            : "Website information is general and does not constitute a quote, contract, availability guarantee, or commitment to perform a project. Scope is confirmed through separate documentation."
           : es
-            ? "El formulario y la agenda son demostraciones y actualmente no transmiten ni almacenan información personal."
-            : "The form and booking interface are demonstrations and do not currently transmit or store personal information."}
+            ? "El formulario, chat y calendario pueden recopilar nombre, teléfono, correo, ciudad, información del proyecto, idioma y datos de la cita para gestionar solicitudes y seguimiento en el CRM."
+            : "The form, chat, and calendar may collect name, phone, email, city, project information, language, and appointment details to manage inquiries and follow-up in the CRM."}
       </p>
-      <h2>{es ? "Información de contacto" : "Contact information"}</h2>
-      <p>{es ? "Teléfono, correo, domicilio y razón social pendientes de verificación. No se activan enlaces de contacto en esta vista previa." : "Phone, email, street address, and legal entity are pending verification. Contact links are not active in this preview."}</p>
+      <h2>{es ? "Uso de la información" : "Use of information"}</h2>
+      <p>{terms ? (es ? "El envío de una solicitud o la reserva de una consulta no garantiza aceptación del proyecto, precio, fecha de inicio ni plazo de terminación." : "Submitting a request or booking a consultation does not guarantee project acceptance, pricing, a start date, or a completion timeline.") : (es ? "La información puede procesarse mediante proveedores de website, CRM, chat y calendario únicamente para gestionar la consulta, la cita y el seguimiento relacionado." : "Information may be processed through website, CRM, chat, and calendar providers only to manage the inquiry, appointment, and related follow-up.")}</p>
+      <h2>{es ? "Información del negocio" : "Business information"}</h2>
       <p>
         {es
           ? "No se presenta domicilio, razón social, licencia ni otra información legal no proporcionada."
@@ -1240,8 +1139,8 @@ export default async function Page({ params }: Props) {
     "@type": "HomeAndConstructionBusiness",
     name: "Crest & Coast Construction",
     description: es
-      ? "Negocio ficticio de construcción y remodelación residencial."
-      : "Fictional residential construction and remodeling business.",
+      ? "Construcción y remodelación residencial en Santa Barbara y comunidades cercanas."
+      : "Residential construction and remodeling in Santa Barbara and nearby communities.",
     areaServed: ["Santa Barbara", "Goleta", "Montecito", "Carpinteria"],
     url: `${site}${clean}`,
   };
