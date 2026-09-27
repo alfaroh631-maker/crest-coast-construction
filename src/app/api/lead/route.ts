@@ -41,7 +41,9 @@ export async function POST(request: Request) {
 
   const webhook = process.env.GHL_WEBSITE_LEAD_WEBHOOK_URL;
   if (!webhook) {
-    return NextResponse.json({ error: "Lead integration is not configured" }, { status: 503 });
+    // HighLevel External Tracking captures this DOM-based form in the browser.
+    // Keep the optional webhook path for a future direct server integration.
+    return NextResponse.json({ ok: true, capture: "external-tracking" }, { status: 202 });
   }
 
   try {
