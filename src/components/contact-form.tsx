@@ -1,10 +1,8 @@
-import Script from "next/script";
-
 export function ContactForm({ es }: { es: boolean }) {
   return (
     <div className="form ghlFormEmbed">
       <iframe
-        src="https://link.mganexusgo.com/widget/form/rf0ccrRjXUmn0jk7IAHv"
+        src="https://api.leadconnectorhq.com/widget/form/rf0ccrRjXUmn0jk7IAHv"
         id="inline-rf0ccrRjXUmn0jk7IAHv"
         data-layout="{'id':'INLINE'}"
         data-trigger-type="alwaysShow"
@@ -22,7 +20,6 @@ export function ContactForm({ es }: { es: boolean }) {
         title={es ? "Solicitud de presupuesto de Crest & Coast" : "Crest & Coast Website Estimate Request"}
         loading="eager"
       />
-      <Script src="https://link.mganexusgo.com/js/form_embed.js" strategy="afterInteractive" />
     </div>
   );
 }
