@@ -83,6 +83,9 @@ export function Header({ lang, alternate }: { lang: Lang; alternate: string }) {
         <Link className="lang" href={alternate}>
           EN | ES
         </Link>
+        <Link className="bookLink" href={`${p}/${es ? "agendar" : "book"}`}>
+          {es ? "Agendar consulta" : "Book a Consultation"}
+        </Link>
         <Link className="navCta" href={`${p}/${es ? "contacto" : "contact"}`}>
           {es ? "Solicitar presupuesto" : "Request an Estimate"}
         </Link>
@@ -110,11 +113,12 @@ export function Footer({ lang }: { lang: Lang }) {
       </div>
       <div>
         <h3>{es ? "Contacto" : "Contact"}</h3>
-        <p className="pendingContact">
-          {es
-            ? "Teléfono y correo pendientes de verificación antes del lanzamiento."
-            : "Phone and email pending verification before launch."}
-        </p>
+        <Link href={`${p}/${es ? "contacto" : "contact"}`}>
+          {es ? "Solicitar presupuesto" : "Request an Estimate"}
+        </Link>
+        <Link href={`${p}/${es ? "agendar" : "book"}`}>
+          {es ? "Agendar consulta gratis" : "Book a Free Consultation"}
+        </Link>
       </div>
       <div>
         <h3>{es ? "Explorar" : "Explore"}</h3>
@@ -143,9 +147,7 @@ export function Footer({ lang }: { lang: Lang }) {
       </div>
       <div className="footerBottom">
         © {new Date().getFullYear()} Crest & Coast Construction ·{" "}
-        {es
-          ? "Sitio de demostración para un negocio ficticio."
-          : "Demonstration website for a fictional business."}
+        Demo site
       </div>
     </footer>
   );

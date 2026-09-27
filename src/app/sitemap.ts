@@ -28,8 +28,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
             : 0.6,
       alternates: {
         languages: {
-          en: `${base}${enPath}`,
-          es: `${base}${esPath}`,
+          "en-US": `${base}${enPath}`,
+          "es-US": `${base}${esPath}`,
+          "x-default": `${base}${enPath}`,
         },
       },
     };
