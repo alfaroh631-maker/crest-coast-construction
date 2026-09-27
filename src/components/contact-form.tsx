@@ -32,8 +32,10 @@ export function ContactForm({ es }: { es: boolean }) {
 
   return (
     <form
+      action="/api/lead"
       className="form"
       id="crest-coast-estimate-form"
+      method="post"
       name="Crest & Coast Website Estimate"
       onSubmit={submit}
     >
