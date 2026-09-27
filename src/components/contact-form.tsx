@@ -31,7 +31,12 @@ export function ContactForm({ es }: { es: boolean }) {
   }
 
   return (
-    <form className="form" id="crest-coast-estimate-form" onSubmit={submit}>
+    <form
+      className="form"
+      id="crest-coast-estimate-form"
+      name="Crest & Coast Website Estimate"
+      onSubmit={submit}
+    >
       <div className="field">
         <label htmlFor="full-name">{es ? "Nombre completo" : "Full Name"}</label>
         <input id="full-name" name="fullName" type="text" required autoComplete="name" />
