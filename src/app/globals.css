@@ -564,6 +564,19 @@ h2 {
   min-width: 0;
   width: 100%;
 }
+
+.ghlFormEmbed {
+  padding: 0;
+  overflow: hidden;
+}
+
+.ghlFormEmbed iframe {
+  display: block;
+  width: 100%;
+  min-height: 980px;
+  border: 0;
+  background: transparent;
+}
 .field {
   display: flex;
   flex-direction: column;
