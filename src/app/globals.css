@@ -566,6 +566,7 @@ h2 {
 }
 
 .ghlFormEmbed {
+  display: block;
   padding: 0;
   overflow: hidden;
 }
